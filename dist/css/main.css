@@ -96,6 +96,11 @@ h6 {
   font-weight: 400;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .card-grid {
   margin: 6rem auto;
   width: min(100% - 2rem, 60rem);
@@ -105,12 +110,47 @@ h6 {
 }
 
 .card {
-  padding: 1rem;
+  --padding: 1rem;
+  position: relative;
   display: grid;
   grid-row: 2;
+  padding: var(--padding);
   border: 1px solid var(--color-neutral-400);
   border-bottom: 5px solid var(--color-primary);
+  background-color: var(--color-neutral-100);
   aspect-ratio: 1/0.7;
+  z-index: 1;
+  transition: transform 0.35s ease, background-color 0.35s ease, z-index 0s 0.35s linear;
+}
+.card::before {
+  opacity: 0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-neutral-900);
+  filter: blur(2em);
+  z-index: -1;
+  transform: translate(0, 0);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+.card:hover, .card:focus {
+  background-color: var(--color-neutral-900);
+  transform: scale(1.35);
+  border: 0;
+  z-index: 5;
+  transition: transform 0.35s ease, background-color 0.35s ease;
+}
+.card:hover::before, .card:focus::before {
+  opacity: 0.3;
+  transform: translate(-50%, 50%);
+}
+.card:hover .card__title, .card:focus .card__title {
+  color: var(--color-neutral-100);
+}
+.card:hover .card__arrow, .card:focus .card__arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 .card--large {
   aspect-ratio: 1/1;
@@ -136,7 +176,17 @@ h6 {
   line-height: 1;
   font-size: 2rem;
   font-weight: 600;
+  transition: color 0.35s ease;
 }
-.card__image, .card__arrow {
+.card__arrow {
+  position: absolute;
+  inset: auto var(--padding) calc(var(--padding) / 4) auto;
+  font-size: 2rem;
+  color: var(--color-primary);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.2s ease-in, opacity 0.2s linear;
+}
+.card__image {
   display: none;
 }/*# sourceMappingURL=main.css.map */
