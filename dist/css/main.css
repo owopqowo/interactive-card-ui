@@ -140,6 +140,10 @@ a {
   border: 0;
   z-index: 5;
   transition: transform 0.35s ease, background-color 0.35s ease;
+  -webkit-animation: shake 0.5s linear;
+          animation: shake 0.5s linear;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
 }
 .card:hover::before, .card:focus::before {
   opacity: 0.3;
@@ -189,4 +193,52 @@ a {
 }
 .card__image {
   display: none;
+}
+
+@-webkit-keyframes shake {
+  0% {
+    transform: scale(1.35);
+  }
+  25% {
+    transform: scale(1.35) rotate(3deg);
+  }
+  40% {
+    transform: scale(1.35) rotate(-3deg);
+  }
+  50% {
+    transform: scale(1.35) rotate(3deg);
+  }
+  60% {
+    transform: scale(1.35) rotate(-3deg);
+  }
+  75% {
+    transform: scale(1.35) rotate(3deg);
+  }
+  100% {
+    transform: scale(1.35);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: scale(1.35);
+  }
+  25% {
+    transform: scale(1.35) rotate(3deg);
+  }
+  40% {
+    transform: scale(1.35) rotate(-3deg);
+  }
+  50% {
+    transform: scale(1.35) rotate(3deg);
+  }
+  60% {
+    transform: scale(1.35) rotate(-3deg);
+  }
+  75% {
+    transform: scale(1.35) rotate(3deg);
+  }
+  100% {
+    transform: scale(1.35);
+  }
 }/*# sourceMappingURL=main.css.map */
