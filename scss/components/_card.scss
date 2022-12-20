@@ -50,8 +50,7 @@
     border: 0;
     z-index: 5;
     transition: transform 0.35s ease, background-color 0.35s ease, z-index 0s 0s ease;
-    animation: shake 0.75s ease-in;
-    animation-delay: 0.5s;
+    animation: shake 0.75s ease-in forwards;
 
     &::before {
       opacity: 0.3;
@@ -90,7 +89,8 @@
 
       @for $image from 0 through 4 {
         &:nth-of-type(#{$image + 1}) {
-          transition-delay: 0.8s + ($image * 0.08);
+          box-shadow: -3rem 2rem 1.5rem hsla(0, 0, 0, 0.1);
+          transition-delay: 0.5s + ($image * 0.08);
         }
       }
     }
@@ -146,7 +146,8 @@
     max-width: 70%;
     max-height: 70%;
     z-index: -2;
-    transition: transform 0.15s ease;
+    box-shadow: -3rem 2rem 1.5rem hsla(0, 0, 0, 0);
+    transition: transform 0.15s ease, box-shadow 0s linear;
     pointer-events: none;
   }
 }
