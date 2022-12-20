@@ -108,3 +108,72 @@ padding-top 또는 padding-bottom을 이용하는 방법
 #### 예외 상황
 width, height 값이 지정될 경우 종횡비 적용 ❌  
 내용이 요소를 넘는 경우 요소는 확장되지만 종횡비 적용 ❌
+## CSS inset
+요소의 위치를 결정하는 top, right, bottom, left의 축약 스타일 속성
+### 사용예시
+top, right, bottom, left 값을 한줄로 작성 가능
+```
+.box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.box {
+  position: absolute;
+  inset: 0;
+}
+```
+## Sass @for
+### 사용예시
+@for 문을 작성할 때 변수는 보간법(#{})으로 처리
+```
+/* SCSS */
+@for $i from 1 to 3{
+  .icon_#{$i}{
+    background-position:0 ($i * -10px);
+  }
+}
+
+/* CSS */
+.icon_1{background-position:0 -10px;}
+.icon_2{background-position:0 -20px;}
+```
+### from ~ to와 from ~ through 차이점
+#### from ~ to
+to 뒤에 나오는 숫자 미만의 반복되는 값을 사용 (해당 숫자 비포함)
+```
+/* SCSS */
+@for $i from 0 to 5{
+  .animal_#{$i}{
+    background-position:0 ($i * -10px);
+  }
+}
+
+/* CSS */
+.animal_0{background-position:0 0;}
+.animal_1{background-position:0 -10px;}
+.animal_2{background-position:0 -20px;}
+.animal_3{background-position:0 -30px;}
+.animal_4{background-position:0 -40px;}
+```
+#### from ~ through
+through 뒤에 나오는 숫자 이하로 반복되는 값을 사용 (해당 숫자 포함)
+```
+/* SCSS */
+@for $i from 0 through 5{
+  .animal_#{$i}{
+    background-position:0 ($i * -10px);
+  }
+}
+
+/* CSS */
+.animal_0{background-position:0 0;}
+.animal_1{background-position:0 -10px;}
+.animal_2{background-position:0 -20px;}
+.animal_3{background-position:0 -30px;}
+.animal_4{background-position:0 -40px;}
+.animal_5{background-position:0 -50px;}
+```

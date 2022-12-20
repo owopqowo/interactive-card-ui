@@ -117,22 +117,28 @@ a {
   padding: var(--padding);
   border: 1px solid var(--color-neutral-400);
   border-bottom: 5px solid var(--color-primary);
-  background-color: var(--color-neutral-100);
   aspect-ratio: 1/0.7;
   z-index: 1;
-  transition: transform 0.35s ease, background-color 0.35s ease, z-index 0s 0.35s linear;
+  transition: transform 0.35s ease, z-index 0s 0.35s linear;
 }
-.card::before {
-  opacity: 0;
+.card::before, .card::after {
   content: "";
   position: absolute;
   inset: 0;
+}
+.card::before {
+  opacity: 0;
   background: var(--color-neutral-900);
   filter: blur(2em);
-  z-index: -1;
+  z-index: -3;
   transform: translate(0, 0);
   transition: transform 0.35s ease, opacity 0.35s ease;
   pointer-events: none;
+}
+.card::after {
+  background-color: var(--color-neutral-100);
+  z-index: -1;
+  transition: background-color 0.35s ease;
 }
 .card:hover, .card:focus {
   background-color: var(--color-neutral-900);
@@ -140,8 +146,8 @@ a {
   border: 0;
   z-index: 5;
   transition: transform 0.35s ease, background-color 0.35s ease;
-  -webkit-animation: shake 0.5s linear;
-          animation: shake 0.5s linear;
+  -webkit-animation: shake 0.75s ease-in;
+          animation: shake 0.75s ease-in;
   -webkit-animation-delay: 0.5s;
           animation-delay: 0.5s;
 }
@@ -149,12 +155,48 @@ a {
   opacity: 0.3;
   transform: translate(-50%, 50%);
 }
+.card:hover::after, .card:focus::after {
+  background-color: var(--color-neutral-900);
+}
 .card:hover .card__title, .card:focus .card__title {
   color: var(--color-neutral-100);
 }
 .card:hover .card__arrow, .card:focus .card__arrow {
   opacity: 1;
   transform: translateX(0);
+}
+.card:hover .card__image:nth-of-type(1), .card:focus .card__image:nth-of-type(1) {
+  transform: rotate(-5deg) translate(120%, 30%);
+}
+.card:hover .card__image:nth-of-type(2), .card:focus .card__image:nth-of-type(2) {
+  transform: rotate(10deg) translate(140%, 80%);
+}
+.card:hover .card__image:nth-of-type(3), .card:focus .card__image:nth-of-type(3) {
+  transform: rotate(5deg) translate(40%, 130%);
+}
+.card:hover .card__image:nth-of-type(4), .card:focus .card__image:nth-of-type(4) {
+  transform: rotate(-15deg) translate(-80%, 100%);
+}
+.card:hover .card__image:nth-of-type(5), .card:focus .card__image:nth-of-type(5) {
+  transform: rotate(5deg) translate(-70%, 40%);
+}
+.card:hover .card__image:nth-of-type(1), .card:focus .card__image:nth-of-type(1) {
+  transition-delay: 0.8s;
+}
+.card:hover .card__image:nth-of-type(2), .card:focus .card__image:nth-of-type(2) {
+  transition-delay: 0.88s;
+}
+.card:hover .card__image:nth-of-type(3), .card:focus .card__image:nth-of-type(3) {
+  transition-delay: 0.96s;
+}
+.card:hover .card__image:nth-of-type(4), .card:focus .card__image:nth-of-type(4) {
+  transition-delay: 1.04s;
+}
+.card:hover .card__image:nth-of-type(5), .card:focus .card__image:nth-of-type(5) {
+  transition-delay: 1.12s;
+}
+.card:hover.card--large .card__image:nth-of-type(3), .card:focus.card--large .card__image:nth-of-type(3) {
+  transform: rotate(5deg) translate(40%, 190%);
 }
 .card--large {
   aspect-ratio: 1/1;
@@ -192,7 +234,12 @@ a {
   transition: transform 0.2s ease-in, opacity 0.2s linear;
 }
 .card__image {
-  display: none;
+  position: absolute;
+  max-width: 70%;
+  max-height: 70%;
+  z-index: -2;
+  transition: transform 0.15s ease;
+  pointer-events: none;
 }
 
 @-webkit-keyframes shake {
